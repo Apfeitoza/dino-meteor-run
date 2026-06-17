@@ -1,0 +1,12 @@
+# C
+C_BLUE = (29, 135, 248)
+C_RED = (231, 81, 81)
+
+
+# M
+
+MENU_OPTION = ("NEW GAME", "SCORE", "EXIT")
+
+# W
+WIN_WIDTH = 576
+WIN_HEIGHT = 324

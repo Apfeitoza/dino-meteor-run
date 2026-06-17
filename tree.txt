@@ -1,0 +1,60 @@
+.
+├── assets
+│   ├── img
+│   │   ├── bg
+│   │   │   ├── Background.png
+│   │   │   └── menuBg.png
+│   │   ├── dino
+│   │   │   ├── hurt
+│   │   │   │   ├── hurt_1.png
+│   │   │   │   ├── hurt_2.png
+│   │   │   │   ├── hurt_3.png
+│   │   │   │   └── hurt_4.png
+│   │   │   ├── idle
+│   │   │   │   ├── idle_1.png
+│   │   │   │   ├── idle_2.png
+│   │   │   │   ├── idle_3.png
+│   │   │   │   └── idle_4.png
+│   │   │   ├── move
+│   │   │   │   ├── move_1.png
+│   │   │   │   ├── move_2.png
+│   │   │   │   ├── move_3.png
+│   │   │   │   ├── move_4.png
+│   │   │   │   ├── move_5.png
+│   │   │   │   └── move_6.png
+│   │   │   └── sneak
+│   │   │       ├── sneak_1.png
+│   │   │       ├── sneak_2.png
+│   │   │       ├── sneak_3.png
+│   │   │       ├── sneak_4.png
+│   │   │       ├── sneak_5.png
+│   │   │       ├── sneak_6.png
+│   │   │       └── sneak_7.png
+│   │   ├── items
+│   │   │   └── meat.png
+│   │   ├── meteor
+│   │   │   ├── meteor_1.png
+│   │   │   ├── meteor_2.png
+│   │   │   ├── meteor_3.png
+│   │   │   ├── meteor_4.png
+│   │   │   └── meteor_5.png
+│   │   └── ui
+│   │       ├── Group.png
+│   │       ├── heart.png
+│   │       └── logo.png
+│   └── music
+│       ├── bgm
+│       │   ├── Fase.ogg
+│       │   └── Menu.ogg
+│       └── sfx
+│           └── Hit.wav
+├── code
+│   ├── __init__.py
+│   ├── entities.py
+│   ├── game_state.py
+│   └── player.py
+├── main.py
+├── requirements.txt
+└── tree.txt
+
+16 directories, 42 files
