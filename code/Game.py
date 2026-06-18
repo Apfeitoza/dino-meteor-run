@@ -10,15 +10,16 @@ class Game:
     def __init__(self):
         pygame.init()
         self.window = pygame.display.set_mode(size=(WIN_WIDTH, WIN_HEIGHT))
+        self.clock = pygame.time.Clock()
 
     def run(self):
         while True:
             menu = Menu(self.window)
-            menu_return = menu.run()
+            menu_return = menu.run(self.clock)
 
             if menu_return == MENU_OPTION[0]:
                 level = Level(self.window)
-                level_return = level.run()
+                level_return = level.run(self.clock)
                 print("jogando")
                 pygame.quit()
                 quit()

@@ -8,3 +8,5 @@ class EntityFactory:
             case "Player":
                 return Player(entity_name, position)
         pass
+
+  

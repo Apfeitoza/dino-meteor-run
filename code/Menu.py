@@ -11,7 +11,7 @@ class Menu:
         self.logo = pygame.image.load("assets/img/ui/logo.png").convert_alpha()
         self.logo_rect = self.logo.get_rect(center=(WIN_WIDTH / 2, 100))
 
-    def run(self):
+    def run(self, clock):
         # index da opção do menu
         menu_option = 0
         # musica
@@ -39,6 +39,7 @@ class Menu:
             self.menu_text(10, 'No Jogo: Esquerda/Direita - Mover  | Espaço - Correr', C_WHITE, ((WIN_WIDTH / 2), WIN_HEIGHT - 20))
 
             pygame.display.flip()
+            clock.tick(60)
 
             # checa eventos
             for event in pygame.event.get():
