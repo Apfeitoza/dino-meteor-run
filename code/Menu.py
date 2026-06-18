@@ -15,7 +15,7 @@ class Menu:
         # index da opção do menu
         menu_option = 0
         # musica
-        pygame.mixer_music.load("./assets/music/bgm/fase.ogg")
+        pygame.mixer_music.load("./assets/music/bgm/Menu.ogg")
         pygame.mixer_music.play(-1)
 
         while True:
