@@ -11,8 +11,8 @@ class Player(Entity):
         self.state = "idle"
         self.current_frame = 0
         self.facing_right = True
-        
-        #puxando animações da Entity
+
+        # puxando animações da Entity
         self.image = self.animations["idle_right"][0]
         self.rect = self.image.get_rect(midbottom=self.position)
 

@@ -1,10 +1,11 @@
+from code.Meteor import Meteor
 from code.Player import Player
 
 import pygame
 
 
 class EntityFactory:
-    #função para percorrer todos os nossos frames de animação dinamicamente
+    # função para percorrer todos os nossos frames de animação dinamicamente
     @staticmethod
     def load_frames(base_path: str, num_frames: int, flip: bool = False):
         frames = []
@@ -27,7 +28,7 @@ class EntityFactory:
     def get_entity(entity_name: str, position: tuple):
         match entity_name:
             case "Player":
-                #carrega todas as animações direto na factory através da função genérica
+                # carrega todas as animações direto na factory através da função genérica
                 player_animations = {
                     "idle_right": EntityFactory.load_frames(
                         "assets/img/dino/idle/idle_", 4, False
@@ -55,4 +56,9 @@ class EntityFactory:
                     ),
                 }
                 return Player(entity_name, position, player_animations)
+            case "Meteor":
+                meteor_animations = {
+                    "fall": EntityFactory.load_frames("assets/img/meteor/meteor_", 5, False)
+                }
+                return Meteor(entity_name, position, meteor_animations)
         pass
