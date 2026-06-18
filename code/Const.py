@@ -4,6 +4,20 @@ C_RED = (231, 81, 81)
 C_WHITE = (255, 255, 255)
 C_YELLOW = (231, 223, 65)
 
+# E
+
+ENTITY_HEALTH = {
+    "Player": 3,
+    "Meteor": 1,
+    "Meat": 1,
+}
+
+ENTITY_SPEED = {
+    "Player": 1,
+    "Meteor": 1,
+    "Meat": 1,
+}
+
 
 # M
 
