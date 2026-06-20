@@ -23,7 +23,7 @@ import pygame
 
 
 class Level:
-    def __init__(self, window):
+    def __init__(self, window, menu_return: str, player_score: int):
         self.window = window
         # controles de tempo de score e fase
         self.score_time = SCORE_TIME
@@ -105,8 +105,10 @@ class Level:
                 if event.type == EVENT_TIMEOUT:
                     self.timeout -= TIMEOUT_STEP
                     if self.timeout == 0:
-                        print("voce venceu")
-                        return True
+                        for ent in self.entity_list:
+                            if isinstance(ent, Player):
+                                return True, ent.score        
+                        
 
                 if event.type == pygame.QUIT:
                     pygame.quit()
