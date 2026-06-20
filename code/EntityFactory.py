@@ -1,3 +1,4 @@
+from code.Meat import Meat
 from code.Meteor import Meteor
 from code.Player import Player
 
@@ -58,7 +59,12 @@ class EntityFactory:
                 return Player(entity_name, position, player_animations)
             case "Meteor":
                 meteor_animations = {
-                    "fall": EntityFactory.load_frames("assets/img/meteor/meteor_", 5, False)
+                    "fall": EntityFactory.load_frames(
+                        "assets/img/meteor/meteor_", 5, False
+                    )
                 }
                 return Meteor(entity_name, position, meteor_animations)
+            case "Meat":
+                meat_frame = pygame.image.load("./assets/img/items/meat.png") 
+                return Meat(entity_name, position, meat_frame)
         pass

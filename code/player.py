@@ -52,7 +52,7 @@ class Player(Entity):
         if self.current_frame >= len(frame_list):
             self.current_frame = 0  # se chegar ao fim da lista volta para a primeira
 
-        self.image = frame_list[int(self.current_frame)]
+        self.image = frame_list[int(self.current_frame)]   
 
         self.rect = self.image.get_rect(
             center=self.rect.center

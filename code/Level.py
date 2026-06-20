@@ -3,8 +3,10 @@ import sys
 
 from code.Const import (
     C_WHITE,
+    EVENT_MEAT,
     EVENT_METEOR,
-    SPAWN_TIME,
+    SPAWN_METEOR_TIME,
+    SPAWN_MEAT_TIME,
     WIN_HEIGHT,
     WIN_WIDTH,
 )
@@ -27,7 +29,8 @@ class Level:
         self.player = EntityFactory.get_entity("Player", (WIN_WIDTH / 2, 260))
         self.entity_list.append(self.player)
 
-        pygame.time.set_timer(EVENT_METEOR, SPAWN_TIME)
+        pygame.time.set_timer(EVENT_METEOR, SPAWN_METEOR_TIME)
+        pygame.time.set_timer(EVENT_MEAT, SPAWN_MEAT_TIME)
 
     def run(self, clock):
         # musica
@@ -51,6 +54,11 @@ class Level:
                     position = random.randint(0, WIN_WIDTH)
                     meteoro = EntityFactory.get_entity("Meteor", (position, -50))
                     self.entity_list.append(meteoro)
+                # evento da queda da carne, mesma lógica do meteoro
+                if event.type == EVENT_MEAT:
+                    position = random.randint(0, WIN_WIDTH)
+                    meat = EntityFactory.get_entity("Meat", (position, -50))
+                    self.entity_list.append(meat)
 
                 if event.type == pygame.QUIT:
                     pygame.quit()

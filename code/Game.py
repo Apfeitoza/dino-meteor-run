@@ -1,7 +1,7 @@
 import sys
 from code.Const import MENU_OPTION, WIN_HEIGHT, WIN_WIDTH
-from code.Menu import Menu
 from code.Level import Level
+from code.Menu import Menu
 
 import pygame
 
