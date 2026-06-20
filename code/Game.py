@@ -19,14 +19,12 @@ class Game:
 
             if menu_return == MENU_OPTION[0]:
                 level = Level(self.window)
-                level_return = level.run(self.clock)
-                print("jogando")
-                pygame.quit()
-                quit()
+                level_return = level.run(self.clock)              
+               
             elif menu_return == MENU_OPTION[1]:
                 print("pontuação")
                 pygame.quit()
                 quit()
-            else:
+            elif menu_return == MENU_OPTION[2]:              
                 pygame.quit()
                 sys.exit()

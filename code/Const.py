@@ -26,27 +26,32 @@ ENTITY_DAMAGE = {
     "Meat": -1,
 }
 
-
-EVENT_METEOR = pygame.USEREVENT + 1
-EVENT_MEAT = pygame.USEREVENT + 2
-
-
-# M
-MENU_OPTION = ("NEW GAME", "SCORE", "EXIT")
-
-# P
-
 ENTITY_SCORE = {
     "Meat": 100,
     "Meteor": 0,
     "Player": 0,
 }
 
+EVENT_METEOR = pygame.USEREVENT + 1
+EVENT_MEAT = pygame.USEREVENT + 2
+EVENT_SCORE_TIME = pygame.USEREVENT + 3
+EVENT_TIMEOUT = pygame.USEREVENT + 4
+
+
+# M
+MENU_OPTION = ("NEW GAME", "SCORE", "EXIT")
+
 
 # S
 SPAWN_METEOR_TIME = 1500
 SPAWN_MEAT_TIME = 6000
+SCORE_TIME = 10000
 
+
+# T
+TIMEOUT_LEVEL = 60000  # 60s
+TIMEOUT_STEP = 100  # 100ms
+git
 # W
 WIN_WIDTH = 576
 WIN_HEIGHT = 324
