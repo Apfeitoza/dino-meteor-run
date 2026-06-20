@@ -1,21 +1,19 @@
 import random
 import sys
-
 from code.Const import (
     C_WHITE,
     EVENT_MEAT,
     EVENT_METEOR,
-    SPAWN_METEOR_TIME,
     SPAWN_MEAT_TIME,
+    SPAWN_METEOR_TIME,
     WIN_HEIGHT,
     WIN_WIDTH,
 )
 from code.Entity import Entity
 from code.EntityFactory import EntityFactory
+from code.EntityMediator import EntityMediator
 
 import pygame
-
-from code.EntityMediator import EntityMediator
 
 
 class Level:
@@ -26,8 +24,12 @@ class Level:
             "./assets/img/bg/Background.png"
         )  # bg estático, então não foi criada uma classe específica
         self.bg_rect = self.bg.get_rect(left=0, top=0)
-        self.player = EntityFactory.get_entity("Player", (WIN_WIDTH / 2, 260))
-        self.entity_list.append(self.player)
+        player = EntityFactory.get_entity("Player", (WIN_WIDTH / 2, 260))
+
+        self.dmg_sfx = pygame.mixer.Sound("./assets/music/sfx/Hit.wav")
+        self.pwrUp_sfx = pygame.mixer.Sound("./assets/music/sfx/Powerup.wav")
+
+        self.entity_list.append(player)
 
         pygame.time.set_timer(EVENT_METEOR, SPAWN_METEOR_TIME)
         pygame.time.set_timer(EVENT_MEAT, SPAWN_MEAT_TIME)
@@ -47,9 +49,17 @@ class Level:
             for ent in self.entity_list:
                 self.window.blit(ent.image, ent.rect)
                 ent.update()
+                # Mostrar quantidade de vida (POR ENQUANTO TESTE)
+                if ent.name == "Player":
+                    self.level_text(
+                        14,
+                        f"Health: {ent.health} | Score: {ent.score}",
+                        C_WHITE,
+                        (150, 25),
+                    )
 
             for event in pygame.event.get():
-                #controla o evento da queda do meteoro aleatoriamente, spawna ele e salva na lista de entidades
+                # controla o evento da queda do meteoro aleatoriamente, spawna ele e salva na lista de entidades
                 if event.type == EVENT_METEOR:
                     position = random.randint(0, WIN_WIDTH)
                     meteoro = EntityFactory.get_entity("Meteor", (position, -50))
@@ -76,7 +86,11 @@ class Level:
             )
             pygame.display.flip()
             # Teste de colisão (por enquanto meteoro sair da tela)
-            EntityMediator.verify_collision(entity_list=self.entity_list)
+            EntityMediator.verify_collision(
+                entity_list=self.entity_list,
+                dmg_sfx=self.dmg_sfx,
+                pwrUp_sfx=self.pwrUp_sfx,
+            )
             EntityMediator.verify_health(entity_list=self.entity_list)
 
     def level_text(

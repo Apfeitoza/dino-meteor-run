@@ -9,6 +9,7 @@ class Player(Entity):
         super().__init__(name, position, animations)
 
         self.state = "idle"
+        self.hurt_timer = 0  # animação hurt
         self.current_frame = 0
         self.facing_right = True
 
@@ -40,6 +41,11 @@ class Player(Entity):
             else:
                 self.state = "move"
 
+        # configurando animação de dano
+        if self.hurt_timer > 0:
+            self.hurt_timer -= 1
+            self.state = 'hurt'
+
         # direção dos frames
         direction = "right" if self.facing_right else "left"
         animation_key = f"{self.state}_{direction}"
@@ -52,7 +58,7 @@ class Player(Entity):
         if self.current_frame >= len(frame_list):
             self.current_frame = 0  # se chegar ao fim da lista volta para a primeira
 
-        self.image = frame_list[int(self.current_frame)]   
+        self.image = frame_list[int(self.current_frame)]
 
         self.rect = self.image.get_rect(
             center=self.rect.center

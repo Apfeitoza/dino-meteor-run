@@ -20,12 +20,27 @@ ENTITY_SPEED = {
     "Meat": 1,
 }
 
+ENTITY_DAMAGE = {
+    "Player": 1,
+    "Meteor": 1,
+    "Meat": -1,
+}
+
+
 EVENT_METEOR = pygame.USEREVENT + 1
 EVENT_MEAT = pygame.USEREVENT + 2
 
 
 # M
 MENU_OPTION = ("NEW GAME", "SCORE", "EXIT")
+
+# P
+
+ENTITY_SCORE = {
+    "Meat": 100,
+    "Meteor": 0,
+    "Player": 0,
+}
 
 
 # S

@@ -9,4 +9,5 @@ class Meat(Entity):
         self.rect = self.image.get_rect(center=self.position)
 
     def update(self):
+        #não tem animação, ele só cai de acordo com a velocidade da const
         self.rect.y += self.speed

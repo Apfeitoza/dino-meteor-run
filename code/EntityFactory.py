@@ -65,6 +65,7 @@ class EntityFactory:
                 }
                 return Meteor(entity_name, position, meteor_animations)
             case "Meat":
+                #não tem animação então a gente só carrega a imagem aqui
                 meat_frame = pygame.image.load("./assets/img/items/meat.png") 
                 return Meat(entity_name, position, meat_frame)
         pass
