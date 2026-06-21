@@ -40,7 +40,7 @@ class Player(Entity):
                 self.state = "sneak"
             else:
                 self.state = "move"
-
+        #so pra dar commit
         # configurando animação de dano
         if self.hurt_timer > 0:
             self.hurt_timer -= 1
