@@ -26,7 +26,7 @@ class EntityFactory:
         return frames
 
     @staticmethod
-    def get_entity(entity_name: str, position: tuple):
+    def get_entity(entity_name: str, position: tuple, speed_multiplier=1):
         match entity_name:
             case "Player":
                 # carrega todas as animações direto na factory através da função genérica
@@ -63,9 +63,13 @@ class EntityFactory:
                         "assets/img/meteor/meteor_", 5, False
                     )
                 }
-                return Meteor(entity_name, position, meteor_animations)
+                entity = Meteor(entity_name, position, meteor_animations)
+                entity.speed *= speed_multiplier  # aplica o multiplicador de velocidade
+                return entity
             case "Meat":
-                #não tem animação então a gente só carrega a imagem aqui
-                meat_frame = pygame.image.load("./assets/img/items/meat.png") 
-                return Meat(entity_name, position, meat_frame)
+                # não tem animação então a gente só carrega a imagem aqui
+                meat_frame = pygame.image.load("./assets/img/items/meat.png")
+                entity = Meat(entity_name, position, meat_frame)
+                entity.speed *= speed_multiplier
+                return entity
         pass

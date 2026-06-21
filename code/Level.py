@@ -34,8 +34,8 @@ class Level:
             "./assets/img/bg/Background.png"
         )  # bg estático, então não foi criada uma classe específica
         self.bg_rect = self.bg.get_rect(left=0, top=0)
+        #coração e aumento de escala dele
         self.heart = pygame.image.load("./assets/img/ui/heart.png")
-
         original_width = self.heart.get_width()
         original_height = self.heart.get_height()
         new_width = original_width * 2
@@ -48,6 +48,9 @@ class Level:
         # puxar sfx de colisões
         self.dmg_sfx = pygame.mixer.Sound("./assets/music/sfx/Hit.wav")
         self.pwrUp_sfx = pygame.mixer.Sound("./assets/music/sfx/Powerup.wav")
+
+        #controle do aumento de spd da fase
+        self.speed_multiplier = 1
 
         # eventos de tempo
         pygame.time.set_timer(EVENT_TIMEOUT, TIMEOUT_STEP)
@@ -89,17 +92,16 @@ class Level:
                 # controla o evento da queda do meteoro aleatoriamente, spawna ele e salva na lista de entidades
                 if event.type == EVENT_METEOR:
                     position = random.randint(0, WIN_WIDTH)
-                    meteoro = EntityFactory.get_entity("Meteor", (position, -50))
+                    meteoro = EntityFactory.get_entity("Meteor", (position, -50), self.speed_multiplier)
                     self.entity_list.append(meteoro)
                 # evento da queda da carne, mesma lógica do meteoro
                 if event.type == EVENT_MEAT:
                     position = random.randint(0, WIN_WIDTH)
-                    meat = EntityFactory.get_entity("Meat", (position, -50))
+                    meat = EntityFactory.get_entity("Meat", (position, -50), self.speed_multiplier)
                     self.entity_list.append(meat)
-                if (
-                    event.type == EVENT_SCORE_TIME
-                ):  # cada vez que o tempo passar aumenta o score
-                    for ent in self.entity_list:
+                if event.type == EVENT_SCORE_TIME:  # cada vez que o tempo passar aumenta o score
+                    self.speed_multiplier += 0.5
+                    for ent in self.entity_list:                     
                         if ent.name == "Player":
                             ent.score += 50
                 if event.type == EVENT_TIMEOUT:
