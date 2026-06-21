@@ -43,8 +43,8 @@ class Level:
         self.heart = pygame.transform.scale(self.heart, (new_width, new_height))
 
         # cria o player
-        player = EntityFactory.get_entity("Player", (WIN_WIDTH / 2, 260))
-        self.entity_list.append(player)
+        self.player = EntityFactory.get_entity("Player", (WIN_WIDTH / 2, 260))
+        self.entity_list.append(self.player)
         # puxar sfx de colisões
         self.dmg_sfx = pygame.mixer.Sound("./assets/music/sfx/Hit.wav")
         self.pwrUp_sfx = pygame.mixer.Sound("./assets/music/sfx/Powerup.wav")
@@ -83,7 +83,7 @@ class Level:
                      
                     self.level_text(
                         14,
-                        f"Tempo: {self.timeout / 1000:.1f}s | Score: {ent.score}",
+                        f"Time: {self.timeout / 1000:.1f}s | Score: {ent.score}",
                         C_WHITE,
                         ((WIN_WIDTH / 2) + 100, 30),
                     )
@@ -92,8 +92,8 @@ class Level:
                 # controla o evento da queda do meteoro aleatoriamente, spawna ele e salva na lista de entidades
                 if event.type == EVENT_METEOR:
                     position = random.randint(0, WIN_WIDTH)
-                    meteoro = EntityFactory.get_entity("Meteor", (position, -50), self.speed_multiplier)
-                    self.entity_list.append(meteoro)
+                    meteor = EntityFactory.get_entity("Meteor", (position, -50), self.speed_multiplier)
+                    self.entity_list.append(meteor)
                 # evento da queda da carne, mesma lógica do meteoro
                 if event.type == EVENT_MEAT:
                     position = random.randint(0, WIN_WIDTH)
@@ -109,9 +109,7 @@ class Level:
                     if self.timeout == 0:
                         for ent in self.entity_list:
                             if isinstance(ent, Player):
-                                return True, ent.score        
-                        
-
+                                return True, ent.score                               
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
@@ -121,9 +119,8 @@ class Level:
                 for ent in self.entity_list:
                     if isinstance(ent, Player):
                         player_alive = True
-                if not player_alive:
-                    print("game over")
-                    return False
+                if not player_alive:                    
+                    return False, self.player.score
 
             # Texto fps e entidades na tela(testes)            
             self.level_text(

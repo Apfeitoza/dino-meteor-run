@@ -1,4 +1,4 @@
-from code.Const import C_BLUE, C_RED, C_WHITE, C_YELLOW, MENU_OPTION, WIN_HEIGHT, WIN_WIDTH
+from code.Const import C_BLUE, C_WHITE, C_YELLOW, MENU_OPTION, WIN_HEIGHT, WIN_WIDTH
 
 import pygame
 
@@ -33,10 +33,20 @@ class Menu:
                     self.menu_text(
                         16, MENU_OPTION[i], C_BLUE, ((WIN_WIDTH / 2), 200 + 25 * i)
                     )
-            
-            #Instruções de como jogar:
-            self.menu_text(10, 'Setas: Cima/Baixo | Enter: Selecionar', C_WHITE, ((WIN_WIDTH / 2), WIN_HEIGHT - 40))
-            self.menu_text(10, 'No Jogo: Esquerda/Direita - Mover  | Espaço - Correr', C_WHITE, ((WIN_WIDTH / 2), WIN_HEIGHT - 20))
+
+            # Instruções de como jogar:
+            self.menu_text(
+                10,
+                "Arrows(Menu): Up/Down | Space/Enter: Select",
+                C_WHITE,
+                ((WIN_WIDTH / 2), WIN_HEIGHT - 40),
+            )
+            self.menu_text(
+                10,
+                "In Game: Left/Right - Move  | Space - Dash",
+                C_WHITE,
+                ((WIN_WIDTH / 2), WIN_HEIGHT - 20),
+            )
 
             pygame.display.flip()
             clock.tick(60)
@@ -57,9 +67,13 @@ class Menu:
                             menu_option -= 1
                         else:
                             menu_option < len(MENU_OPTION) - 1
-                    if event.key == pygame.K_RETURN or event.key == pygame.K_KP_ENTER: #Return é o enter padrão e kp_enter é o enter do tec numérico
+                    if event.key in (
+                        pygame.K_RETURN,
+                        pygame.K_KP_ENTER,
+                        pygame.K_SPACE,
+                    ):  # Return é o enter padrão e kp_enter é o enter do tec numérico
                         return MENU_OPTION[menu_option]
-                    if event.key == pygame.K_ESCAPE: #ESC
+                    if event.key == pygame.K_ESCAPE:  # ESC
                         pygame.quit()  # fecha janela
                         quit()  # encerra pygame
 

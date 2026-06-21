@@ -1,22 +1,22 @@
 import sys
-from code.Const import C_BLUE, C_RED, C_WHITE, C_YELLOW, MENU_OPTION, SCORE_POS
+from code.Const import C_RED, C_WHITE, C_YELLOW, MENU_OPTION, SCORE_POS, WIN_HEIGHT, WIN_WIDTH
 from code.DBProxy import DBProxy
 from datetime import datetime
 
 import pygame
 from pygame import K_BACKSPACE, K_ESCAPE, K_RETURN, KEYDOWN, Rect, Surface
-from pygame.font import Font
 
 
 class Score:
     def __init__(self, window: Surface):
         self.window = window
-        self.surf = pygame.image.load("./assets/img/bg/menuBg.png").convert_alpha()
+        self.surf = pygame.image.load("./assets/img/bg/scoreBg.png").convert_alpha()
         self.rect = self.surf.get_rect(left=0, top=0)
         pass
 
     def save(self, game_mode: str, player_score: list[int]):
-        pygame.mixer_music.load("./assets/music/bgm/Menu.ogg")
+        pygame.mixer_music.load("./assets/music/bgm/Score.ogg")
+        pygame.mixer_music.set_volume(0.2)
         pygame.mixer_music.play(-1)
         db_proxy = DBProxy("DBScore")
         name = ""
@@ -48,10 +48,34 @@ class Score:
                             name += event.unicode
             self.score_text(14, name, C_WHITE, SCORE_POS["Name"])
             pygame.display.flip()
-            pass
+
+    def game_over(self):
+        pygame.mixer_music.load("./assets/music/bgm/Score.ogg")
+        pygame.mixer_music.set_volume(0.2)
+        pygame.mixer_music.play(-1)
+
+        while True:
+            self.window.blit(source=self.surf, dest=self.rect)
+            self.score_text(32, "YOU LOSE!", C_RED, (WIN_WIDTH /2, (WIN_HEIGHT /2) - 30))
+            self.score_text(28, "TRY AGAIN!", C_RED, (WIN_WIDTH /2, (WIN_HEIGHT /2) + 10))
+            text = "Press 'Enter/Esc' to return to menu screen"
+            self.score_text(10, text, C_WHITE, (WIN_WIDTH /2, (WIN_HEIGHT /2) + 60))
+            for event in pygame.event.get():
+                if event.type == pygame.KEYDOWN:
+                    if event.key in (
+                        pygame.K_RETURN,
+                        pygame.K_KP_ENTER,
+                        pygame.K_ESCAPE,
+                    ):
+                        return
+                if event.type == pygame.QUIT:
+                    pygame.quit()  # fecha janela
+                    quit()
+            pygame.display.flip()
 
     def show(self):
-        pygame.mixer_music.load("./assets/music/bgm/Menu.ogg")
+        pygame.mixer_music.load("./assets/music/bgm/Score.ogg")
+        pygame.mixer_music.set_volume(0.2)
         pygame.mixer_music.play(-1)
         self.window.blit(source=self.surf, dest=self.rect)
         self.score_text(32, "TOP 10 SCORE", C_RED, SCORE_POS["Title"])

@@ -14,11 +14,7 @@ class Entity(ABC, pygame.sprite.Sprite):
     self.score = ENTITY_SCORE[self.name]
     self.animations = animations
     self.image = None
-    self.rect = None
-    
-    
-
-    
+    self.rect = None         
   
   @abstractmethod
   def update(self): #engloba todas as ações físicas dos frames

@@ -1,6 +1,5 @@
 from code.Entity import Entity
 
-
 class Meteor(Entity):
     def __init__(self, name, position, animations):
         super().__init__(name, position, animations)

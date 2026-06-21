@@ -24,6 +24,8 @@ class Game:
                 level_return, final_score = level.run(self.clock)
                 if level_return:
                     score.save(menu_return, final_score)
+                else:
+                    score.game_over()
             elif menu_return == MENU_OPTION[1]:
                 score.show()
                 for event in pygame.event.get():
