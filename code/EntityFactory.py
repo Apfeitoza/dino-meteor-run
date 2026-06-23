@@ -1,3 +1,4 @@
+from code.Const import ENTITY_HEALTH
 from code.Meat import Meat
 from code.Meteor import Meteor
 from code.Player import Player
@@ -26,37 +27,40 @@ class EntityFactory:
         return frames
 
     @staticmethod
-    def get_entity(entity_name: str, position: tuple, speed_multiplier=1):
+    def get_entity(entity_name: str, position: tuple, speed_multiplier=1):       
         match entity_name:
-            case "Player":
+            case "Doux" | "Mort" | "Tard" | "Vita":
+                directory = entity_name.lower()
                 # carrega todas as animações direto na factory através da função genérica
                 player_animations = {
                     "idle_right": EntityFactory.load_frames(
-                        "assets/img/dino/doux/idle/idle_", 4, False
+                        f"assets/img/dino/{directory}/idle/idle_", 4, False
                     ),
                     "idle_left": EntityFactory.load_frames(
-                        "assets/img/dino/doux/idle/idle_", 4, True
+                        f"assets/img/dino/{directory}/idle/idle_", 4, True
                     ),
                     "move_right": EntityFactory.load_frames(
-                        "assets/img/dino/doux/move/move_", 6, False
+                        f"assets/img/dino/{directory}/move/move_", 6, False
                     ),
                     "move_left": EntityFactory.load_frames(
-                        "assets/img/dino/doux/move/move_", 6, True
+                        f"assets/img/dino/{directory}/move/move_", 6, True
                     ),
                     "sneak_right": EntityFactory.load_frames(
-                        "assets/img/dino/doux/sneak/sneak_", 7, False
+                        f"assets/img/dino/{directory}/sneak/sneak_", 7, False
                     ),
                     "sneak_left": EntityFactory.load_frames(
-                        "assets/img/dino/doux/sneak/sneak_", 7, True
+                        f"assets/img/dino/{directory}/sneak/sneak_", 7, True
                     ),
                     "hurt_right": EntityFactory.load_frames(
-                        "assets/img/dino/doux/hurt/hurt_", 4, False
+                        f"assets/img/dino/{directory}/hurt/hurt_", 4, False
                     ),
                     "hurt_left": EntityFactory.load_frames(
-                        "assets/img/dino/doux/hurt/hurt_", 4, True
+                        f"assets/img/dino/{directory}/hurt/hurt_", 4, True
                     ),
                 }
-                return Player(entity_name, position, player_animations)
+                initial_health = ENTITY_HEALTH[entity_name]
+                return Player(entity_name, position, player_animations, initial_health)
+
             case "Meteor":
                 meteor_animations = {
                     "fall": EntityFactory.load_frames(

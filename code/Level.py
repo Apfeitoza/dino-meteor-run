@@ -23,7 +23,7 @@ import pygame
 
 
 class Level:
-    def __init__(self, window, menu_return: str, player_score: int):
+    def __init__(self, window, character_menu_return: str, player_score: int):
         self.window = window
         # controles de tempo de score e fase
         self.score_time = SCORE_TIME
@@ -43,7 +43,7 @@ class Level:
         self.heart = pygame.transform.scale(self.heart, (new_width, new_height))
 
         # cria o player
-        self.player = EntityFactory.get_entity("Player", (WIN_WIDTH / 2, 260))
+        self.player = EntityFactory.get_entity(character_menu_return, (WIN_WIDTH / 2, 260))
         self.entity_list.append(self.player)
         # puxar sfx de colisões
         self.dmg_sfx = pygame.mixer.Sound("./assets/music/sfx/Hit.wav")
@@ -74,7 +74,7 @@ class Level:
                 self.window.blit(ent.image, ent.rect)
                 ent.update()
                 # Mostrar quantidade de vida (POR ENQUANTO TESTE)
-                if ent.name == "Player":
+                if isinstance(ent, Player):
                     for i in range(ent.health):
                         pos_x = 20 + (i * 40)
                         pos_y = 20

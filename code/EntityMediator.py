@@ -1,4 +1,4 @@
-from code.Const import WIN_HEIGHT
+from code.Const import ENTITY_HEALTH, WIN_HEIGHT
 from code.Entity import Entity
 from code.Meat import Meat
 from code.Meteor import Meteor
@@ -44,11 +44,11 @@ class EntityMediator:
                     # condição para travar a soma de vidas até 3
                     # mesmo estando genérico a carne nunca terá vida 3 então sempre sofrerá dano
                     if isinstance(ent1, Player):
-                        ent1.health = min(ent1.health, 3)
+                        ent1.health = min(ent1.health, ENTITY_HEALTH[ent1.name])
                         ent1.score += ent2.score
                         ent1.hurt_timer = 0  # animação de hurt não dispara
                     if isinstance(ent2, Player):
-                        ent2.health = min(ent2.health, 3)
+                        ent2.health = min(ent2.health, ENTITY_HEALTH[ent2.name])
                         ent2.score += ent1.score
                         ent2.hurt_timer = 0  # animação de hurt não dispara
                     pygame.mixer.Sound.play(pwrUp_sfx)

@@ -5,7 +5,7 @@ import pygame
 
 
 class Player(Entity):
-    def __init__(self, name, position, animations):
+    def __init__(self, name, position, animations, initial_health):
         super().__init__(name, position, animations)
 
         self.state = "idle"

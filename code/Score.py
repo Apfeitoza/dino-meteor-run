@@ -1,5 +1,13 @@
 import sys
-from code.Const import C_RED, C_WHITE, C_YELLOW, MENU_OPTION, SCORE_POS, WIN_HEIGHT, WIN_WIDTH
+from code.Const import (
+    C_RED,
+    C_WHITE,
+    C_YELLOW,
+    MENU_OPTION,
+    SCORE_POS,
+    WIN_HEIGHT,
+    WIN_WIDTH,
+)
 from code.DBProxy import DBProxy
 from datetime import datetime
 
@@ -56,10 +64,14 @@ class Score:
 
         while True:
             self.window.blit(source=self.surf, dest=self.rect)
-            self.score_text(32, "YOU LOSE!", C_RED, (WIN_WIDTH /2, (WIN_HEIGHT /2) - 30))
-            self.score_text(28, "TRY AGAIN!", C_RED, (WIN_WIDTH /2, (WIN_HEIGHT /2) + 10))
+            self.score_text(
+                32, "YOU LOSE!", C_RED, (WIN_WIDTH / 2, (WIN_HEIGHT / 2) - 30)
+            )
+            self.score_text(
+                28, "TRY AGAIN!", C_RED, (WIN_WIDTH / 2, (WIN_HEIGHT / 2) + 10)
+            )
             text = "Press 'Enter/Esc' to return to menu screen"
-            self.score_text(10, text, C_WHITE, (WIN_WIDTH /2, (WIN_HEIGHT /2) + 60))
+            self.score_text(10, text, C_WHITE, (WIN_WIDTH / 2, (WIN_HEIGHT / 2) + 60))
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
                     if event.key in (

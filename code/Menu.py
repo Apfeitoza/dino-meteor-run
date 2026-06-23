@@ -1,4 +1,11 @@
-from code.Const import C_BLUE, C_WHITE, C_YELLOW, MENU_OPTION, WIN_HEIGHT, WIN_WIDTH
+from code.Const import (
+    C_BLUE,
+    C_WHITE,
+    C_YELLOW,
+    MENU_OPTION,
+    WIN_HEIGHT,
+    WIN_WIDTH,
+)
 
 import pygame
 
@@ -27,11 +34,17 @@ class Menu:
                 # Se for a opção selecionada fica azul, senão fica vermelho (cores da logo)
                 if i == menu_option:
                     self.menu_text(
-                        16, MENU_OPTION[i], C_YELLOW, ((WIN_WIDTH / 2), 200 + 25 * i)
+                        16,
+                        MENU_OPTION[i],
+                        C_YELLOW,
+                        ((WIN_WIDTH / 2), 200 + 25 * i),
                     )
                 else:
                     self.menu_text(
-                        16, MENU_OPTION[i], C_BLUE, ((WIN_WIDTH / 2), 200 + 25 * i)
+                        16,
+                        MENU_OPTION[i],
+                        C_BLUE,
+                        ((WIN_WIDTH / 2), 200 + 25 * i),
                     )
 
             # Instruções de como jogar:
@@ -66,7 +79,7 @@ class Menu:
                         if menu_option > 0:
                             menu_option -= 1
                         else:
-                            menu_option < len(MENU_OPTION) - 1
+                            menu_option = len(MENU_OPTION) - 1
                     if event.key in (
                         pygame.K_RETURN,
                         pygame.K_KP_ENTER,

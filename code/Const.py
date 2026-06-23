@@ -6,22 +6,34 @@ C_RED = (231, 81, 81)
 C_WHITE = (255, 255, 255)
 C_YELLOW = (231, 223, 65)
 
+CHARACTER_OPTION = ("Doux", "Mort", "Tard", "Vita")
+CHARACTER_DIR_SELECTION = ("doux", "mort", "tard", "vita")
+
 # E
 
 ENTITY_HEALTH = {
-    "Player": 3,
+    "Doux": 3,
+    "Mort": 1,
+    "Tard": 2,
+    "Vita": 5,
     "Meteor": 1,
     "Meat": 1,
 }
 
 ENTITY_SPEED = {
-    "Player": 2,
+    "Doux": 2,
+    "Mort": 4,
+    "Tard": 3,
+    "Vita": 1,
     "Meteor": 1,
     "Meat": 1,
 }
 
 ENTITY_DAMAGE = {
-    "Player": 1,
+    "Doux": 1,
+    "Mort": 1,
+    "Tard": 1,
+    "Vita": 1,
     "Meteor": 1,
     "Meat": -1,
 }
@@ -29,7 +41,10 @@ ENTITY_DAMAGE = {
 ENTITY_SCORE = {
     "Meat": 100,
     "Meteor": 0,
-    "Player": 0,
+    "Doux": 0,
+    "Mort": 0,
+    "Tard": 0,
+    "Vita": 0,
 }
 
 EVENT_METEOR = pygame.USEREVENT + 1
