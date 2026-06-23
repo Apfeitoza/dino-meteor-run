@@ -17,7 +17,7 @@ from code.Const import (
 from code.Entity import Entity
 from code.EntityFactory import EntityFactory
 from code.EntityMediator import EntityMediator
-from code.Player_backup import Player
+from code.Player import Player
 
 import pygame
 
