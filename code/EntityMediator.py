@@ -2,7 +2,7 @@ from code.Const import ENTITY_HEALTH, GAME_HEIGHT
 from code.Entity import Entity
 from code.Meat import Meat
 from code.Meteor import Meteor
-from code.Player import Player
+from code.Player_backup import Player
 
 import pygame
 

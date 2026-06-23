@@ -1,7 +1,7 @@
 from code.Const import ENTITY_HEALTH
 from code.Meat import Meat
 from code.Meteor import Meteor
-from code.Player import Player
+from code.Player_backup import Player
 
 import pygame
 
