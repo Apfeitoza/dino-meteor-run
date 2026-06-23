@@ -1,0 +1,171 @@
+.
+├── DBScore
+├── assets
+│   ├── font
+│   │   └── PressStart2P-Regular.ttf
+│   ├── img
+│   │   ├── bg
+│   │   │   ├── Background.png
+│   │   │   ├── menuBg.png
+│   │   │   └── scoreBg.png
+│   │   ├── dino
+│   │   │   ├── doux
+│   │   │   │   ├── hurt
+│   │   │   │   │   ├── hurt_1.png
+│   │   │   │   │   ├── hurt_2.png
+│   │   │   │   │   ├── hurt_3.png
+│   │   │   │   │   └── hurt_4.png
+│   │   │   │   ├── idle
+│   │   │   │   │   ├── idle_1.png
+│   │   │   │   │   ├── idle_2.png
+│   │   │   │   │   ├── idle_3.png
+│   │   │   │   │   └── idle_4.png
+│   │   │   │   ├── move
+│   │   │   │   │   ├── move_1.png
+│   │   │   │   │   ├── move_2.png
+│   │   │   │   │   ├── move_3.png
+│   │   │   │   │   ├── move_4.png
+│   │   │   │   │   ├── move_5.png
+│   │   │   │   │   └── move_6.png
+│   │   │   │   └── sneak
+│   │   │   │       ├── sneak_1.png
+│   │   │   │       ├── sneak_2.png
+│   │   │   │       ├── sneak_3.png
+│   │   │   │       ├── sneak_4.png
+│   │   │   │       ├── sneak_5.png
+│   │   │   │       ├── sneak_6.png
+│   │   │   │       └── sneak_7.png
+│   │   │   ├── mort
+│   │   │   │   ├── hurt
+│   │   │   │   │   ├── hurt_1.png
+│   │   │   │   │   ├── hurt_2.png
+│   │   │   │   │   ├── hurt_3.png
+│   │   │   │   │   └── hurt_4.png
+│   │   │   │   ├── idle
+│   │   │   │   │   ├── idle_1.png
+│   │   │   │   │   ├── idle_2.png
+│   │   │   │   │   ├── idle_3.png
+│   │   │   │   │   └── idle_4.png
+│   │   │   │   ├── move
+│   │   │   │   │   ├── move_1.png
+│   │   │   │   │   ├── move_2.png
+│   │   │   │   │   ├── move_3.png
+│   │   │   │   │   ├── move_4.png
+│   │   │   │   │   ├── move_5.png
+│   │   │   │   │   └── move_6.png
+│   │   │   │   └── sneak
+│   │   │   │       ├── sneak_1.png
+│   │   │   │       ├── sneak_2.png
+│   │   │   │       ├── sneak_3.png
+│   │   │   │       ├── sneak_4.png
+│   │   │   │       ├── sneak_5.png
+│   │   │   │       ├── sneak_6.png
+│   │   │   │       └── sneak_7.png
+│   │   │   ├── tard
+│   │   │   │   ├── hurt
+│   │   │   │   │   ├── hurt_1.png
+│   │   │   │   │   ├── hurt_2.png
+│   │   │   │   │   ├── hurt_3.png
+│   │   │   │   │   └── hurt_4.png
+│   │   │   │   ├── idle
+│   │   │   │   │   ├── idle_1.png
+│   │   │   │   │   ├── idle_2.png
+│   │   │   │   │   ├── idle_3.png
+│   │   │   │   │   └── idle_4.png
+│   │   │   │   ├── move
+│   │   │   │   │   ├── move_1.png
+│   │   │   │   │   ├── move_2.png
+│   │   │   │   │   ├── move_3.png
+│   │   │   │   │   ├── move_4.png
+│   │   │   │   │   ├── move_5.png
+│   │   │   │   │   └── move_6.png
+│   │   │   │   └── sneak
+│   │   │   │       ├── sneak_1.png
+│   │   │   │       ├── sneak_2.png
+│   │   │   │       ├── sneak_3.png
+│   │   │   │       ├── sneak_4.png
+│   │   │   │       ├── sneak_5.png
+│   │   │   │       ├── sneak_6.png
+│   │   │   │       └── sneak_7.png
+│   │   │   └── vita
+│   │   │       ├── hurt
+│   │   │       │   ├── hurt_1.png
+│   │   │       │   ├── hurt_2.png
+│   │   │       │   ├── hurt_3.png
+│   │   │       │   └── hurt_4.png
+│   │   │       ├── idle
+│   │   │       │   ├── idle_1.png
+│   │   │       │   ├── idle_2.png
+│   │   │       │   ├── idle_3.png
+│   │   │       │   └── idle_4.png
+│   │   │       ├── move
+│   │   │       │   ├── move_1.png
+│   │   │       │   ├── move_2.png
+│   │   │       │   ├── move_3.png
+│   │   │       │   ├── move_4.png
+│   │   │       │   ├── move_5.png
+│   │   │       │   └── move_6.png
+│   │   │       └── sneak
+│   │   │           ├── sneak_1.png
+│   │   │           ├── sneak_2.png
+│   │   │           ├── sneak_3.png
+│   │   │           ├── sneak_4.png
+│   │   │           ├── sneak_5.png
+│   │   │           ├── sneak_6.png
+│   │   │           └── sneak_7.png
+│   │   ├── items
+│   │   │   └── meat.png
+│   │   ├── meteor
+│   │   │   ├── icy_meteor_.aseprite
+│   │   │   ├── meteor_1.png
+│   │   │   ├── meteor_2.png
+│   │   │   ├── meteor_3.png
+│   │   │   ├── meteor_4.png
+│   │   │   └── meteor_5.png
+│   │   └── ui
+│   │       ├── Group.png
+│   │       ├── heart.png
+│   │       └── logo.png
+│   └── music
+│       ├── bgm
+│       │   ├── Fase.ogg
+│       │   ├── Menu.ogg
+│       │   └── Score.ogg
+│       └── sfx
+│           ├── Hit.wav
+│           └── Powerup.wav
+├── code
+│   ├── Const.py
+│   ├── DBProxy.py
+│   ├── Entity.py
+│   ├── EntityFactory.py
+│   ├── EntityMediator.py
+│   ├── Game.py
+│   ├── Level.py
+│   ├── Meat.py
+│   ├── Menu.py
+│   ├── MenuSelect.py
+│   ├── Meteor.py
+│   ├── Player.py
+│   ├── Score.py
+│   ├── __init__.py
+│   └── __pycache__
+│       ├── Const.cpython-314.pyc
+│       ├── DBProxy.cpython-314.pyc
+│       ├── Entity.cpython-314.pyc
+│       ├── EntityFactory.cpython-314.pyc
+│       ├── EntityMediator.cpython-314.pyc
+│       ├── Game.cpython-314.pyc
+│       ├── Level.cpython-314.pyc
+│       ├── Meat.cpython-314.pyc
+│       ├── Menu.cpython-314.pyc
+│       ├── MenuSelect.cpython-314.pyc
+│       ├── Meteor.cpython-314.pyc
+│       ├── Player.cpython-314.pyc
+│       ├── Score.cpython-314.pyc
+│       └── __init__.cpython-314.pyc
+├── main.py
+├── requirements.txt
+└── tree.txt
+
+34 directories, 135 files

@@ -1,10 +1,11 @@
+import sys
 from code.Const import (
     C_BLUE,
     C_WHITE,
     C_YELLOW,
+    GAME_HEIGHT,
+    GAME_WIDTH,
     MENU_OPTION,
-    WIN_HEIGHT,
-    WIN_WIDTH,
 )
 
 import pygame
@@ -16,7 +17,7 @@ class Menu:
         self.surf = pygame.image.load("./assets/img/bg/menuBg.png").convert_alpha()
         self.rect = self.surf.get_rect(left=0, top=0)
         self.logo = pygame.image.load("assets/img/ui/logo.png").convert_alpha()
-        self.logo_rect = self.logo.get_rect(center=(WIN_WIDTH / 2, 100))
+        self.logo_rect = self.logo.get_rect(center=(GAME_WIDTH / 2, 100))
 
     def run(self, clock):
         # index da opção do menu
@@ -37,14 +38,14 @@ class Menu:
                         16,
                         MENU_OPTION[i],
                         C_YELLOW,
-                        ((WIN_WIDTH / 2), 200 + 25 * i),
+                        ((GAME_WIDTH / 2), 200 + 25 * i),
                     )
                 else:
                     self.menu_text(
                         16,
                         MENU_OPTION[i],
                         C_BLUE,
-                        ((WIN_WIDTH / 2), 200 + 25 * i),
+                        ((GAME_WIDTH / 2), 200 + 25 * i),
                     )
 
             # Instruções de como jogar:
@@ -52,15 +53,18 @@ class Menu:
                 10,
                 "Arrows(Menu): Up/Down | Space/Enter: Select",
                 C_WHITE,
-                ((WIN_WIDTH / 2), WIN_HEIGHT - 40),
+                ((GAME_WIDTH / 2), GAME_HEIGHT - 40),
             )
             self.menu_text(
                 10,
                 "In Game: Left/Right - Move  | Space - Dash",
                 C_WHITE,
-                ((WIN_WIDTH / 2), WIN_HEIGHT - 20),
+                ((GAME_WIDTH / 2), GAME_HEIGHT - 20),
             )
 
+            window_real = pygame.display.get_surface()
+            scaled_surf = pygame.transform.scale(self.window, window_real.get_size())
+            window_real.blit(scaled_surf, (0, 0))
             pygame.display.flip()
             clock.tick(60)
 
@@ -68,7 +72,7 @@ class Menu:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()  # fecha janela
-                    quit()  # encerra pygame
+                    sys.exit()  # encerra pygame
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_DOWN:  # down key
                         if menu_option < len(MENU_OPTION) - 1:
@@ -88,7 +92,7 @@ class Menu:
                         return MENU_OPTION[menu_option]
                     if event.key == pygame.K_ESCAPE:  # ESC
                         pygame.quit()  # fecha janela
-                        quit()  # encerra pygame
+                        sys.exit()  # encerra pygame
 
     # Função para setar texto do menu, pesquisei para colocar uma fonte específica já salva na pasta raiz para não depender do sistema.
     def menu_text(

@@ -9,7 +9,9 @@ import pygame
 class EntityFactory:
     # função para percorrer todos os nossos frames de animação dinamicamente
     @staticmethod
-    def load_frames(base_path: str, num_frames: int, flip: bool = False):
+    def load_frames(
+        base_path: str, num_frames: int, flip: bool = False, scale_size: tuple = None
+    ):
         frames = []
 
         for i in range(
@@ -23,11 +25,14 @@ class EntityFactory:
             if flip:
                 img = pygame.transform.flip(img, True, False)
 
+            # aumenta a escala da imagem
+            if scale_size:
+                img = pygame.transform.scale(img, scale_size)
             frames.append(img)  # faz o append dos frames na lista
         return frames
 
     @staticmethod
-    def get_entity(entity_name: str, position: tuple, speed_multiplier=1):       
+    def get_entity(entity_name: str, position: tuple, speed_multiplier=1):
         match entity_name:
             case "Doux" | "Mort" | "Tard" | "Vita":
                 directory = entity_name.lower()
@@ -40,10 +45,10 @@ class EntityFactory:
                         f"assets/img/dino/{directory}/idle/idle_", 4, True
                     ),
                     "move_right": EntityFactory.load_frames(
-                        f"assets/img/dino/{directory}/move/move_", 6, False
+                        f"assets/img/dino/{directory}/move/move_", 6, False,
                     ),
                     "move_left": EntityFactory.load_frames(
-                        f"assets/img/dino/{directory}/move/move_", 6, True
+                        f"assets/img/dino/{directory}/move/move_", 6, True 
                     ),
                     "sneak_right": EntityFactory.load_frames(
                         f"assets/img/dino/{directory}/sneak/sneak_", 7, False
@@ -59,6 +64,7 @@ class EntityFactory:
                     ),
                 }
                 initial_health = ENTITY_HEALTH[entity_name]
+
                 return Player(entity_name, position, player_animations, initial_health)
 
             case "Meteor":
@@ -73,6 +79,7 @@ class EntityFactory:
             case "Meat":
                 # não tem animação então a gente só carrega a imagem aqui
                 meat_frame = pygame.image.load("./assets/img/items/meat.png")
+                # meat_frame_doubled = pygame.transform.scale(meat_frame, (52, 40))
                 entity = Meat(entity_name, position, meat_frame)
                 entity.speed *= speed_multiplier
                 return entity

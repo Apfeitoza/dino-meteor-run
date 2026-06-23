@@ -1,4 +1,4 @@
-from code.Const import WIN_WIDTH
+from code.Const import GAME_WIDTH
 from code.Entity import Entity
 
 import pygame
@@ -26,7 +26,7 @@ class Player(Entity):
         self.state = "idle"
         if pressed_key[pygame.K_SPACE]:
             dash_speed = dash_speed * 2
-        if pressed_key[pygame.K_RIGHT] and self.rect.right < WIN_WIDTH:
+        if pressed_key[pygame.K_RIGHT] and self.rect.right < GAME_WIDTH:
             self.rect.x += dash_speed
             if pressed_key[pygame.K_SPACE]:
                 self.state = "sneak"
@@ -44,7 +44,7 @@ class Player(Entity):
         # configurando animação de dano
         if self.hurt_timer > 0:
             self.hurt_timer -= 1
-            self.state = 'hurt'
+            self.state = "hurt"
 
         # direção dos frames
         direction = "right" if self.facing_right else "left"

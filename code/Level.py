@@ -6,13 +6,13 @@ from code.Const import (
     EVENT_METEOR,
     EVENT_SCORE_TIME,
     EVENT_TIMEOUT,
+    GAME_HEIGHT,
+    GAME_WIDTH,
     SCORE_TIME,
     SPAWN_MEAT_TIME,
     SPAWN_METEOR_TIME,
     TIMEOUT_LEVEL,
     TIMEOUT_STEP,
-    WIN_HEIGHT,
-    WIN_WIDTH,
 )
 from code.Entity import Entity
 from code.EntityFactory import EntityFactory
@@ -34,7 +34,7 @@ class Level:
             "./assets/img/bg/Background.png"
         )  # bg estático, então não foi criada uma classe específica
         self.bg_rect = self.bg.get_rect(left=0, top=0)
-        #coração e aumento de escala dele
+        # coração e aumento de escala dele
         self.heart = pygame.image.load("./assets/img/ui/heart.png")
         original_width = self.heart.get_width()
         original_height = self.heart.get_height()
@@ -43,13 +43,15 @@ class Level:
         self.heart = pygame.transform.scale(self.heart, (new_width, new_height))
 
         # cria o player
-        self.player = EntityFactory.get_entity(character_menu_return, (WIN_WIDTH / 2, 260))
+        self.player = EntityFactory.get_entity(
+            character_menu_return, (GAME_WIDTH / 2, 260)
+        )
         self.entity_list.append(self.player)
         # puxar sfx de colisões
         self.dmg_sfx = pygame.mixer.Sound("./assets/music/sfx/Hit.wav")
         self.pwrUp_sfx = pygame.mixer.Sound("./assets/music/sfx/Powerup.wav")
 
-        #controle do aumento de spd da fase
+        # controle do aumento de spd da fase
         self.speed_multiplier = 1
 
         # eventos de tempo
@@ -80,28 +82,34 @@ class Level:
                         pos_y = 20
 
                         self.window.blit(self.heart, (pos_x, pos_y))
-                     
+
                     self.level_text(
                         14,
                         f"Time: {self.timeout / 1000:.1f}s | Score: {ent.score}",
                         C_WHITE,
-                        ((WIN_WIDTH / 2) + 100, 30),
+                        ((GAME_WIDTH / 2) + 100, 30),
                     )
 
             for event in pygame.event.get():
                 # controla o evento da queda do meteoro aleatoriamente, spawna ele e salva na lista de entidades
                 if event.type == EVENT_METEOR:
-                    position = random.randint(0, WIN_WIDTH)
-                    meteor = EntityFactory.get_entity("Meteor", (position, -50), self.speed_multiplier)
+                    position = random.randint(0, GAME_WIDTH)
+                    meteor = EntityFactory.get_entity(
+                        "Meteor", (position, -50), self.speed_multiplier
+                    )
                     self.entity_list.append(meteor)
                 # evento da queda da carne, mesma lógica do meteoro
                 if event.type == EVENT_MEAT:
-                    position = random.randint(0, WIN_WIDTH)
-                    meat = EntityFactory.get_entity("Meat", (position, -50), self.speed_multiplier)
+                    position = random.randint(0, GAME_WIDTH)
+                    meat = EntityFactory.get_entity(
+                        "Meat", (position, -50), self.speed_multiplier
+                    )
                     self.entity_list.append(meat)
-                if event.type == EVENT_SCORE_TIME:  # cada vez que o tempo passar aumenta o score
+                if (
+                    event.type == EVENT_SCORE_TIME
+                ):  # cada vez que o tempo passar aumenta o score
                     self.speed_multiplier += 0.5
-                    for ent in self.entity_list:                     
+                    for ent in self.entity_list:
                         if ent.name == "Player":
                             ent.score += 50
                 if event.type == EVENT_TIMEOUT:
@@ -109,7 +117,7 @@ class Level:
                     if self.timeout == 0:
                         for ent in self.entity_list:
                             if isinstance(ent, Player):
-                                return True, ent.score                               
+                                return True, ent.score
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
@@ -119,12 +127,12 @@ class Level:
                 for ent in self.entity_list:
                     if isinstance(ent, Player):
                         player_alive = True
-                if not player_alive:                    
+                if not player_alive:
                     return False, self.player.score
 
-            # Texto fps e entidades na tela(testes)            
+            # Texto fps e entidades na tela(testes)
             self.level_text(
-                12, f"fps: {clock.get_fps():.0f}", C_WHITE, (60, WIN_HEIGHT - 30)
+                12, f"fps: {clock.get_fps():.0f}", C_WHITE, (60, GAME_HEIGHT - 30)
             )
             # self.level_text(
             #     14,
@@ -132,6 +140,10 @@ class Level:
             #     C_WHITE,
             #     (100, WIN_HEIGHT - 15),
             # )
+
+            window_real = pygame.display.get_surface()
+            scaled_surf = pygame.transform.scale(self.window, window_real.get_size())
+            window_real.blit(scaled_surf, (0, 0))
             pygame.display.flip()
             # Teste de colisão (por enquanto meteoro sair da tela)
             EntityMediator.verify_collision(

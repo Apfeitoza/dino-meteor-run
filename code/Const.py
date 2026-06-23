@@ -52,14 +52,19 @@ EVENT_MEAT = pygame.USEREVENT + 2
 EVENT_SCORE_TIME = pygame.USEREVENT + 3
 EVENT_TIMEOUT = pygame.USEREVENT + 4
 
+# G
+
+GAME_WIDTH = 576
+GAME_HEIGHT = 324
+
 
 # M
 MENU_OPTION = ("NEW GAME", "SCORE", "EXIT")
 
 
 # S
-SPAWN_METEOR_TIME = 1000
-SPAWN_MEAT_TIME = 4000
+SPAWN_METEOR_TIME = 4000
+SPAWN_MEAT_TIME = 6000
 SCORE_TIME = 10000
 
 
@@ -68,23 +73,23 @@ TIMEOUT_LEVEL = 60000  # 60s
 TIMEOUT_STEP = 100  # 100ms
 
 # W
-WIN_WIDTH = 576
-WIN_HEIGHT = 324
+WIN_WIDTH = 1152
+WIN_HEIGHT = 648
 
 # S
 SCORE_POS = {
-    "Title": (WIN_WIDTH / 2, 50),
-    "EnterName": (WIN_WIDTH / 2, 80),
-    "Label": (WIN_WIDTH / 2, 90),
-    "Name": (WIN_WIDTH / 2, 110),
-    0: (WIN_WIDTH / 2, 110),
-    1: (WIN_WIDTH / 2, 130),
-    2: (WIN_WIDTH / 2, 150),
-    3: (WIN_WIDTH / 2, 170),
-    4: (WIN_WIDTH / 2, 190),
-    5: (WIN_WIDTH / 2, 210),
-    6: (WIN_WIDTH / 2, 230),
-    7: (WIN_WIDTH / 2, 250),
-    8: (WIN_WIDTH / 2, 270),
-    9: (WIN_WIDTH / 2, 290),
+    "Title": (GAME_WIDTH / 2, 50),
+    "EnterName": (GAME_WIDTH / 2, 80),
+    "Label": (GAME_WIDTH / 2, 90),
+    "Name": (GAME_WIDTH / 2, 110),
+    0: (GAME_WIDTH / 2, 110),
+    1: (GAME_WIDTH / 2, 130),
+    2: (GAME_WIDTH / 2, 150),
+    3: (GAME_WIDTH / 2, 170),
+    4: (GAME_WIDTH / 2, 190),
+    5: (GAME_WIDTH / 2, 210),
+    6: (GAME_WIDTH / 2, 230),
+    7: (GAME_WIDTH / 2, 250),
+    8: (GAME_WIDTH / 2, 270),
+    9: (GAME_WIDTH / 2, 290),
 }

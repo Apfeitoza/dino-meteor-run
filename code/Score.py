@@ -3,10 +3,10 @@ from code.Const import (
     C_RED,
     C_WHITE,
     C_YELLOW,
+    GAME_HEIGHT,
+    GAME_WIDTH,
     MENU_OPTION,
     SCORE_POS,
-    WIN_HEIGHT,
-    WIN_WIDTH,
 )
 from code.DBProxy import DBProxy
 from datetime import datetime
@@ -55,6 +55,10 @@ class Score:
                         if len(name) < 4:
                             name += event.unicode
             self.score_text(14, name, C_WHITE, SCORE_POS["Name"])
+
+            window_real = pygame.display.get_surface()
+            scaled_surf = pygame.transform.scale(self.window, window_real.get_size())
+            window_real.blit(scaled_surf, (0, 0))
             pygame.display.flip()
 
     def game_over(self):
@@ -65,13 +69,13 @@ class Score:
         while True:
             self.window.blit(source=self.surf, dest=self.rect)
             self.score_text(
-                32, "YOU LOSE!", C_RED, (WIN_WIDTH / 2, (WIN_HEIGHT / 2) - 30)
+                32, "YOU LOSE!", C_RED, (GAME_WIDTH / 2, (GAME_HEIGHT / 2) - 30)
             )
             self.score_text(
-                28, "TRY AGAIN!", C_RED, (WIN_WIDTH / 2, (WIN_HEIGHT / 2) + 10)
+                28, "TRY AGAIN!", C_RED, (GAME_WIDTH / 2, (GAME_HEIGHT / 2) + 10)
             )
             text = "Press 'Enter/Esc' to return to menu screen"
-            self.score_text(10, text, C_WHITE, (WIN_WIDTH / 2, (WIN_HEIGHT / 2) + 60))
+            self.score_text(10, text, C_WHITE, (GAME_WIDTH / 2, (GAME_HEIGHT / 2) + 60))
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
                     if event.key in (
@@ -82,7 +86,11 @@ class Score:
                         return
                 if event.type == pygame.QUIT:
                     pygame.quit()  # fecha janela
-                    quit()
+                    sys.exit()
+
+            window_real = pygame.display.get_surface()
+            scaled_surf = pygame.transform.scale(self.window, window_real.get_size())
+            window_real.blit(scaled_surf, (0, 0))
             pygame.display.flip()
 
     def show(self):
@@ -114,6 +122,10 @@ class Score:
                 if event.type == KEYDOWN:
                     if event.key == K_ESCAPE:
                         return
+
+            window_real = pygame.display.get_surface()
+            scaled_surf = pygame.transform.scale(self.window, window_real.get_size())
+            window_real.blit(scaled_surf, (0, 0))
             pygame.display.flip()
 
     def score_text(

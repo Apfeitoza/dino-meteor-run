@@ -1,4 +1,4 @@
-from code.Const import ENTITY_HEALTH, WIN_HEIGHT
+from code.Const import ENTITY_HEALTH, GAME_HEIGHT
 from code.Entity import Entity
 from code.Meat import Meat
 from code.Meteor import Meteor
@@ -11,7 +11,7 @@ class EntityMediator:
     @staticmethod
     def __verify_collision_window(ent: Entity):
         if isinstance(ent, (Meteor, Meat)):
-            if ent.rect.bottom >= WIN_HEIGHT:
+            if ent.rect.bottom >= GAME_HEIGHT:
                 ent.health = 0
 
     @staticmethod
@@ -40,7 +40,7 @@ class EntityMediator:
 
                 if isinstance(ent1, Meat) or isinstance(ent2, Meat):
                     ent2.health -= ent1.damage
-                    ent1.health -= ent2.damage                    
+                    ent1.health -= ent2.damage
                     # condição para travar a soma de vidas até 3
                     # mesmo estando genérico a carne nunca terá vida 3 então sempre sofrerá dano
                     if isinstance(ent1, Player):
