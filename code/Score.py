@@ -6,6 +6,7 @@ from code.Const import (
     GAME_HEIGHT,
     GAME_WIDTH,
     MENU_OPTION,
+    MUSIC_VOLUME,
     SCORE_POS,
 )
 from code.DBProxy import DBProxy
@@ -43,12 +44,13 @@ class Score:
                     pygame.quit()
                     sys.exit()
                 elif event.type == KEYDOWN:
-                    if event.key == K_RETURN and len(name) == 4:
-                        db_proxy.save(
-                            {"name": name, "score": score, "date": get_formatted_date()}
-                        )
-                        self.show()
-                        return
+                    if event.key == K_RETURN: 
+                        if len(name) == 4:
+                            db_proxy.save(
+                                {"name": name, "score": score, "date": get_formatted_date()}
+                            )
+                            self.show()
+                            return                        
                     elif event.key == K_BACKSPACE:
                         name = name[:-1]
                     else:
@@ -63,7 +65,7 @@ class Score:
 
     def game_over(self):
         pygame.mixer_music.load("./assets/music/bgm/Score.ogg")
-        pygame.mixer_music.set_volume(0.2)
+        pygame.mixer_music.set_volume(MUSIC_VOLUME)  
         pygame.mixer_music.play(-1)
 
         while True:

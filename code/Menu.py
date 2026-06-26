@@ -6,6 +6,7 @@ from code.Const import (
     GAME_HEIGHT,
     GAME_WIDTH,
     MENU_OPTION,
+    MUSIC_VOLUME,
 )
 
 import pygame
@@ -24,6 +25,7 @@ class Menu:
         menu_option = 0
         # musica
         pygame.mixer_music.load("./assets/music/bgm/Menu.ogg")
+        pygame.mixer_music.set_volume(MUSIC_VOLUME)  
         pygame.mixer_music.play(-1)
 
         while True:

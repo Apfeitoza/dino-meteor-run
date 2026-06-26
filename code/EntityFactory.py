@@ -45,10 +45,12 @@ class EntityFactory:
                         f"assets/img/dino/{directory}/idle/idle_", 4, True
                     ),
                     "move_right": EntityFactory.load_frames(
-                        f"assets/img/dino/{directory}/move/move_", 6, False,
+                        f"assets/img/dino/{directory}/move/move_",
+                        6,
+                        False,
                     ),
                     "move_left": EntityFactory.load_frames(
-                        f"assets/img/dino/{directory}/move/move_", 6, True 
+                        f"assets/img/dino/{directory}/move/move_", 6, True
                     ),
                     "sneak_right": EntityFactory.load_frames(
                         f"assets/img/dino/{directory}/sneak/sneak_", 7, False
@@ -76,9 +78,18 @@ class EntityFactory:
                 entity = Meteor(entity_name, position, meteor_animations)
                 entity.speed *= speed_multiplier  # aplica o multiplicador de velocidade
                 return entity
+            case "IcyMeteor":
+                icy_meteor_animations = {
+                    "fall": EntityFactory.load_frames(
+                        "assets/img/meteor/icy_meteor_", 5, False
+                    )
+                }
+                entity = Meteor(entity_name, position, icy_meteor_animations)
+                entity.speed *= speed_multiplier  # aplica o multiplicador de velocidade
+                return entity
             case "Meat":
                 # não tem animação então a gente só carrega a imagem aqui
-                meat_frame = pygame.image.load("./assets/img/items/meat.png")
+                meat_frame = pygame.image.load("./assets/img/items/meat.png").convert_alpha()
                 # meat_frame_doubled = pygame.transform.scale(meat_frame, (52, 40))
                 entity = Meat(entity_name, position, meat_frame)
                 entity.speed *= speed_multiplier
