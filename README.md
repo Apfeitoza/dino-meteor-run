@@ -88,11 +88,13 @@ python main.py
 
 Desenvolvido com 🦖, café e boas práticas de código.
 
-Sprites dos dinos feitas pelo [Arks](https://arks.itch.io/dino-characters)
-Sprites da carne e corações feitas por mim no Aseprite
-Bgs do Craftpix
-BGMS do pack do [Tallbeard](https://tallbeard.itch.io/music-loop-bundle)
-Sfx criados no [Jfxr](https://jfxr.frozenfractal.com/)
+##Créditos
+
+- Sprites dos dinos feitas pelo [Arks](https://arks.itch.io/dino-characters)
+- Sprites da carne e corações feitas por mim no Aseprite
+- Bgs do Craftpix
+- BGMS do pack do [Tallbeard](https://tallbeard.itch.io/music-loop-bundle)
+- Sfx criados no [Jfxr](https://jfxr.frozenfractal.com/)
 
 
 ## 💾 Download do Executável
