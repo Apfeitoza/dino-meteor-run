@@ -13,7 +13,7 @@ class EntityMediator:
         if isinstance(ent, (Meteor, Meat)):
             if ent.rect.bottom >= GAME_HEIGHT:
                 ent.health = 0
-
+   
     @staticmethod
     def __verify_collision_entity(ent1, ent2, dmg_sfx, pwrUp_sfx):
         valid_interaction = False
@@ -32,6 +32,8 @@ class EntityMediator:
                 if isinstance(ent1, Meteor) or isinstance(ent2, Meteor):
                     ent1.health -= ent2.damage
                     ent2.health -= ent1.damage
+                    ent1.score += ent2.score
+                    ent2.score += ent1.score
                     if isinstance(ent1, Meteor):
                         ent2.hurt_timer = 30
                     else:
@@ -52,6 +54,8 @@ class EntityMediator:
                         ent2.score += ent1.score
                         ent2.hurt_timer = 0  # animação de hurt não dispara
                     pygame.mixer.Sound.play(pwrUp_sfx)
+
+    
 
     @staticmethod
     def verify_collision(entity_list: list[Entity], dmg_sfx, pwrUp_sfx):

@@ -17,6 +17,7 @@ ENTITY_HEALTH = {
     "Tard": 2,
     "Vita": 5,
     "Meteor": 1,
+    "IcyMeteor": 1,
     "Meat": 1,
 }
 
@@ -26,6 +27,7 @@ ENTITY_SPEED = {
     "Tard": 3,
     "Vita": 1,
     "Meteor": 1,
+    "IcyMeteor": 2,
     "Meat": 1,
 }
 
@@ -35,12 +37,14 @@ ENTITY_DAMAGE = {
     "Tard": 1,
     "Vita": 1,
     "Meteor": 1,
+    "IcyMeteor": 2,
     "Meat": -1,
 }
 
 ENTITY_SCORE = {
     "Meat": 100,
     "Meteor": 0,
+    "IcyMeteor": -100,
     "Doux": 0,
     "Mort": 0,
     "Tard": 0,
@@ -48,6 +52,7 @@ ENTITY_SCORE = {
 }
 
 EVENT_METEOR = pygame.USEREVENT + 1
+EVENT_ICY_METEOR = pygame.USEREVENT + 5
 EVENT_MEAT = pygame.USEREVENT + 2
 EVENT_SCORE_TIME = pygame.USEREVENT + 3
 EVENT_TIMEOUT = pygame.USEREVENT + 4
@@ -63,8 +68,9 @@ MENU_OPTION = ("NEW GAME", "SCORE", "EXIT")
 
 
 # S
-SPAWN_METEOR_TIME = 4000
-SPAWN_MEAT_TIME = 6000
+SPAWN_METEOR_TIME = 1000
+SPAWN_ICY_METEOR_TIME = 3000
+SPAWN_MEAT_TIME = 4000
 SCORE_TIME = 10000
 
 
@@ -93,3 +99,7 @@ SCORE_POS = {
     8: (GAME_WIDTH / 2, 270),
     9: (GAME_WIDTH / 2, 290),
 }
+
+#VOLUME
+SFX_VOLUME = 0.1
+MUSIC_VOLUME = 0.2

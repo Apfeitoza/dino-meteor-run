@@ -2,13 +2,17 @@ import random
 import sys
 from code.Const import (
     C_WHITE,
+    EVENT_ICY_METEOR,
     EVENT_MEAT,
     EVENT_METEOR,
     EVENT_SCORE_TIME,
     EVENT_TIMEOUT,
     GAME_HEIGHT,
     GAME_WIDTH,
+    MUSIC_VOLUME,
     SCORE_TIME,
+    SFX_VOLUME,
+    SPAWN_ICY_METEOR_TIME,
     SPAWN_MEAT_TIME,
     SPAWN_METEOR_TIME,
     TIMEOUT_LEVEL,
@@ -50,20 +54,22 @@ class Level:
         # puxar sfx de colisões
         self.dmg_sfx = pygame.mixer.Sound("./assets/music/sfx/Hit.wav")
         self.pwrUp_sfx = pygame.mixer.Sound("./assets/music/sfx/Powerup.wav")
-
+        self.dmg_sfx.set_volume(SFX_VOLUME)
+        self.pwrUp_sfx.set_volume(SFX_VOLUME)
         # controle do aumento de spd da fase
         self.speed_multiplier = 1
 
         # eventos de tempo
         pygame.time.set_timer(EVENT_TIMEOUT, TIMEOUT_STEP)
         pygame.time.set_timer(EVENT_METEOR, SPAWN_METEOR_TIME)
+        pygame.time.set_timer(EVENT_ICY_METEOR, SPAWN_ICY_METEOR_TIME)
         pygame.time.set_timer(EVENT_MEAT, SPAWN_MEAT_TIME)
         pygame.time.set_timer(EVENT_SCORE_TIME, SCORE_TIME)
 
     def run(self, clock):
         # musica
         pygame.mixer_music.load("./assets/music/bgm/Fase.ogg")
-        pygame.mixer_music.set_volume(0.3)
+        pygame.mixer_music.set_volume(MUSIC_VOLUME)
         pygame.mixer_music.play(-1)
         clock = pygame.time.Clock()
 
@@ -93,14 +99,21 @@ class Level:
             for event in pygame.event.get():
                 # controla o evento da queda do meteoro aleatoriamente, spawna ele e salva na lista de entidades
                 if event.type == EVENT_METEOR:
-                    position = random.randint(0, GAME_WIDTH)
+                    position = random.randint(0, GAME_WIDTH - 20)
                     meteor = EntityFactory.get_entity(
                         "Meteor", (position, -50), self.speed_multiplier
                     )
                     self.entity_list.append(meteor)
+                # evento meteoro de gelo
+                if event.type == EVENT_ICY_METEOR:
+                    position = random.randint(0, GAME_WIDTH - 20)
+                    meteor = EntityFactory.get_entity(
+                        "IcyMeteor", (position, -50), self.speed_multiplier
+                    )
+                    self.entity_list.append(meteor)
                 # evento da queda da carne, mesma lógica do meteoro
                 if event.type == EVENT_MEAT:
-                    position = random.randint(0, GAME_WIDTH)
+                    position = random.randint(0, GAME_WIDTH - 20)
                     meat = EntityFactory.get_entity(
                         "Meat", (position, -50), self.speed_multiplier
                     )
@@ -110,7 +123,7 @@ class Level:
                 ):  # cada vez que o tempo passar aumenta o score
                     self.speed_multiplier += 0.5
                     for ent in self.entity_list:
-                        if ent.name == "Player":
+                        if isinstance(ent, Player):
                             ent.score += 50
                 if event.type == EVENT_TIMEOUT:
                     self.timeout -= TIMEOUT_STEP

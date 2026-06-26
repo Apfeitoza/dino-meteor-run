@@ -8,6 +8,8 @@ from code.Const import (
     CHARACTER_OPTION,
     GAME_HEIGHT,
     GAME_WIDTH,
+    MUSIC_VOLUME,
+    SFX_VOLUME,
 )
 from code.EntityFactory import EntityFactory
 
@@ -17,7 +19,12 @@ import pygame
 class MenuSelect:
     def __init__(self, window):
         self.window = window
-        self.surf = pygame.image.load("./assets/img/bg/menuBg.png").convert_alpha()
+        self.surf = pygame.image.load("./assets/img/bg/selectMenuBg.png").convert_alpha()
+        #efeito de select
+        self.select_sfx = pygame.mixer.Sound("./assets/music/sfx/Select.wav")
+        self.selected_sfx = pygame.mixer.Sound("./assets/music/sfx/Selected.wav")
+        self.select_sfx.set_volume(SFX_VOLUME)        
+        self.selected_sfx.set_volume(SFX_VOLUME)        
         self.rect = self.surf.get_rect(left=0, top=0)
 
     def run(self, clock):
@@ -26,8 +33,11 @@ class MenuSelect:
         # contador dos frames das animações do dino
         frame_counter = 0
         # musica
-        pygame.mixer_music.load("./assets/music/bgm/Menu.ogg")
-        pygame.mixer_music.play(-1)
+        pygame.mixer_music.load("./assets/music/bgm/Char_select.ogg")
+        pygame.mixer_music.set_volume(MUSIC_VOLUME)      
+        pygame.mixer_music.play(-1)              
+        
+       
         # coloca imagem dos dinos na tela (ajustar para mostrar animação do idle)
         dino_animations = []
 
@@ -69,13 +79,14 @@ class MenuSelect:
             for i in range(len(CHARACTER_OPTION)):
                 # Se for a opção selecionada fica azul, senão fica vermelho (cores da logo)
                 if i == character_option:
+                    
                     self.character_menu_text(
                         16,
                         CHARACTER_OPTION[i],
                         C_YELLOW,
                         ((GAME_WIDTH / 2 - 165) + 110 * i, (GAME_HEIGHT / 2) + 30),
                     )
-                    if CHARACTER_OPTION[i] == "Doux":
+                    if CHARACTER_OPTION[i] == "Doux":                        
                         self.character_menu_text(
                             12,
                             "Health: Normal | Spd: Normal",
@@ -136,10 +147,12 @@ class MenuSelect:
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_RIGHT:
                         if character_option < len(CHARACTER_OPTION) - 1:
+                            pygame.mixer.Sound.play(self.select_sfx)                            
                             character_option += 1
                         else:
                             character_option = 0
                     if event.key == pygame.K_LEFT:
+                        pygame.mixer.Sound.play(self.select_sfx)                        
                         if character_option > 0:
                             character_option -= 1
                         else:
@@ -149,6 +162,7 @@ class MenuSelect:
                         pygame.K_KP_ENTER,
                         pygame.K_SPACE,
                     ):
+                        pygame.mixer.Sound.play(self.selected_sfx)                                             
                         return CHARACTER_OPTION[character_option]
 
                     if event.key == pygame.K_ESCAPE:  # ESC
