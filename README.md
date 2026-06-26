@@ -88,7 +88,7 @@ python main.py
 
 Desenvolvido com 🦖, café e boas práticas de código.
 
-##Créditos
+## Créditos
 
 - Sprites dos dinos feitas pelo [Arks](https://arks.itch.io/dino-characters)
 - Sprites da carne e corações feitas por mim no Aseprite
