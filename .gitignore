@@ -181,6 +181,7 @@ pyrightconfig.json
 .localized
 __MACOSX/
 .AppleDouble
+.vscode
 .LSOverride
 Icon[]
 DBScore
